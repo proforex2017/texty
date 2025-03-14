@@ -1,0 +1,872 @@
+body {
+    font-family: 'Inter', sans-serif; /* More modern base font */
+    background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%); /* Soft gradient background */
+    min-height: 100vh;
+    color: #2c3e50; /* Deep blue-gray for better readability */
+    font-size: 16px; 
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Sidebar Enhancements */
+aside {
+    background: linear-gradient(145deg, #f0f4f8 0%, #e6edf3 100%);
+    border-radius: 12px;
+    box-shadow: 
+        inset -5px -5px 10px rgba(255, 255, 255, 0.8),
+        inset 5px 5px 10px rgba(191, 201, 212, 0.3);
+}
+
+#fileList {
+    list-style: none;
+    padding: 0;
+}
+
+#fileList li {
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    border: 1px solid rgba(203, 213, 224, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.375rem; 
+    cursor: pointer;
+    font-size: 1.05rem; 
+}
+
+#fileList li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+#fileList li:last-child {
+    margin-bottom: 0;
+}
+
+/* Active File Style */
+#fileList li.active {
+    background-color: #94a3b8; 
+    font-weight: bold;
+    color: white; 
+}
+
+/* Toolbar Beautification */
+#toolbar {
+    background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+    border-radius: 12px;
+    box-shadow: 
+        -5px -5px 10px rgba(255, 255, 255, 0.8),
+        5px 5px 10px rgba(191, 201, 212, 0.3);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+#toolbar .ql-formats {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+#toolbar button,
+#toolbar select {
+    color: #4a5568;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: none;
+    padding: 0.35rem;
+    margin: 0 0.1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem; 
+    height: 2.25rem; 
+    font-size: 1.1rem; 
+}
+
+#toolbar button:hover,
+#toolbar select:hover {
+    background-color: rgba(45, 55, 72, 0.1);
+    transform: scale(1.1);
+}
+
+#toolbar button.ql-active,
+#toolbar select.ql-active {
+    background-color: #e2e8f0;
+    color: #2d3748;
+}
+
+#toolbar .ql-picker {
+    min-width: 2.5rem;
+}
+
+#toolbar .ql-picker-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem;
+    border-radius: 0.375rem;
+}
+
+#toolbar .ql-picker-label:hover {
+    background-color: rgba(45, 55, 72, 0.1);
+}
+
+#toolbar button svg,
+#toolbar .ql-picker-label svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Editor Styling */
+#editor {
+    background: linear-gradient(to right, #ffffff 0%, #f9fafb 100%);
+    border-radius: 12px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.05),
+        inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    min-height: 400px;
+    transition: all 0.3s ease;
+    max-height: 500px; 
+    overflow-y: auto; 
+    font-size: 1.1rem; 
+}
+
+#editor:hover {
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Button Styling */
+button {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #4a90e2, #357abf);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Status Bar */
+footer {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Scrollbar for Font Family */
+.ql-snow .ql-picker.ql-font .ql-picker-options {
+    max-height: 250px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-track {
+    background: #f1f3f5;
+    border-radius: 4px;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 4px;
+}
+
+/* Modal Improvements */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+    border-radius: 16px;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    margin: 10vh auto;
+    position: relative;
+    overflow: hidden;
+    font-size: 1.1rem; 
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.1rem; 
+}
+
+.modal-buttons {
+    text-align: right;
+}
+
+.modal-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-size: 1.1rem; 
+}
+
+.modal-buttons button.confirm {
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-buttons button.cancel {
+    background-color: #d9534f;
+    color: white;
+}
+
+/* Link and Formula Modal Styles */
+.link-modal, .formula-modal {
+    padding: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.75rem; 
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.link-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.05rem; 
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.form-group .modal-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: white;
+    font-size: 1.1rem; 
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group .modal-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.modal-buttons button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-buttons button.confirm {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.modal-buttons button.confirm:hover {
+    background-color: #2563eb;
+}
+
+.modal-buttons button.cancel {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.modal-buttons button.cancel:hover {
+    background-color: #e5e7eb;
+}
+
+/* Dark mode adjustments */
+body.dark #toolbar {
+    background-color: #2d3748;
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
+}
+
+body.dark #toolbar .ql-formats {
+    background-color: rgba(45, 55, 72, 0.7);
+    border-color: #4a5568;
+}
+
+body.dark #toolbar button,
+body.dark #toolbar select {
+    color: #e2e8f0;
+}
+
+body.dark #toolbar button:hover,
+body.dark #toolbar select:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode adjustments for scrollbar */
+body.dark .ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+
+body.dark .ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-thumb {
+    background: #4a5568;
+}
+
+body.dark .ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+}
+
+/* Font family dropdown scrollbar styling */
+.ql-snow .ql-picker.ql-font .ql-picker-options {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        margin-top: 0;
+    }
+}
+
+/* Fullscreen Button */
+#fullscreenBtn {
+    background-color: transparent;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #4a5568;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fullscreenBtn:hover {
+    background-color: rgba(45, 55, 72, 0.1);
+    transform: scale(1.1);
+}
+
+body.dark #fullscreenBtn {
+    color: #e2e8f0;
+}
+
+.editor-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9000;
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+body.dark .editor-fullscreen {
+    background-color: #1f2937;
+}
+
+.editor-fullscreen #toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 9001;
+}
+
+.editor-fullscreen #editor {
+    flex-grow: 1;
+    max-height: none;
+}
+
+/* Font family classes for Quill */
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="arial"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="arial"]::before {
+    content: 'Arial';
+    font-family: 'Arial', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="helvetica"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="helvetica"]::before {
+    content: 'Helvetica';
+    font-family: 'Helvetica', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="times-new-roman"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="times-new-roman"]::before {
+    content: 'Times New Roman';
+    font-family: 'Times New Roman', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="garamond"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="garamond"]::before {
+    content: 'Garamond';
+    font-family: 'Garamond', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="georgia"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="georgia"]::before {
+    content: 'Georgia';
+    font-family: 'Georgia', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="courier-new"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="courier-new"]::before {
+    content: 'Courier New';
+    font-family: 'Courier New', monospace;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="verdana"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="verdana"]::before {
+    content: 'Verdana';
+    font-family: 'Verdana', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="roboto"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="roboto"]::before {
+    content: 'Roboto';
+    font-family: 'Roboto', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="open-sans"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="open-sans"]::before {
+    content: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="lato"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="lato"]::before {
+    content: 'Lato';
+    font-family: 'Lato', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="montserrat"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="montserrat"]::before {
+    content: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="poppins"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="poppins"]::before {
+    content: 'Poppins';
+    font-family: 'Poppins', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="raleway"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="raleway"]::before {
+    content: 'Raleway';
+    font-family: 'Raleway', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="merriweather"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="merriweather"]::before {
+    content: 'Merriweather';
+    font-family: 'Merriweather', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="nunito"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="nunito"]::before {
+    content: 'Nunito';
+    font-family: 'Nunito', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="playfair-display"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="playfair-display"]::before {
+    content: 'Playfair Display';
+    font-family: 'Playfair Display', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="oswald"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="oswald"]::before {
+    content: 'Oswald';
+    font-family: 'Oswald', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="source-sans-pro"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="source-sans-pro"]::before {
+    content: 'Source Sans Pro';
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="ubuntu"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="ubuntu"]::before {
+    content: 'Ubuntu';
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="pt-sans"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="pt-sans"]::before {
+    content: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="inter"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="inter"]::before {
+    content: 'Inter';
+    font-family: 'Inter', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="quicksand"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="quicksand"]::before {
+    content: 'Quicksand';
+    font-family: 'Quicksand', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="rubik"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="rubik"]::before {
+    content: 'Rubik';
+    font-family: 'Rubik', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="work-sans"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="work-sans"]::before {
+    content: 'Work Sans';
+    font-family: 'Work Sans', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="karla"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="karla"]::before {
+    content: 'Karla';
+    font-family: 'Karla', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="josefin-sans"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="josefin-sans"]::before {
+    content: 'Josefin Sans';
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="comfortaa"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="comfortaa"]::before {
+    content: 'Comfortaa';
+    font-family: 'Comfortaa', cursive;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="bitter"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="bitter"]::before {
+    content: 'Bitter';
+    font-family: 'Bitter', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="crimson-text"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="crimson-text"]::before {
+    content: 'Crimson Text';
+    font-family: 'Crimson Text', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="libre-baskerville"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="libre-baskerville"]::before {
+    content: 'Libre Baskerville';
+    font-family: 'Libre Baskerville', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="source-serif-pro"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="source-serif-pro"]::before {
+    content: 'Source Serif Pro';
+    font-family: 'Source Serif Pro', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="inconsolata"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="inconsolata"]::before {
+    content: 'Inconsolata';
+    font-family: 'Inconsolata', monospace;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="fira-code"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="fira-code"]::before {
+    content: 'Fira Code';
+    font-family: 'Fira Code', monospace;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="space-mono"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="space-mono"]::before {
+    content: 'Space Mono';
+    font-family: 'Space Mono', monospace;
+}
+
+/* Font styles for the editor */
+.ql-font-arial {
+    font-family: 'Arial', sans-serif;
+}
+.ql-font-helvetica {
+    font-family: 'Helvetica', sans-serif;
+}
+.ql-font-times-new-roman {
+    font-family: 'Times New Roman', serif;
+}
+.ql-font-garamond {
+    font-family: 'Garamond', serif;
+}
+.ql-font-georgia {
+    font-family: 'Georgia', serif;
+}
+.ql-font-courier-new {
+    font-family: 'Courier New', monospace;
+}
+.ql-font-verdana {
+    font-family: 'Verdana', sans-serif;
+}
+.ql-font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+.ql-font-open-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+.ql-font-lato {
+    font-family: 'Lato', sans-serif;
+}
+.ql-font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+.ql-font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+.ql-font-raleway {
+    font-family: 'Raleway', sans-serif;
+}
+.ql-font-merriweather {
+    font-family: 'Merriweather', serif;
+}
+.ql-font-nunito {
+    font-family: 'Nunito', sans-serif;
+}
+.ql-font-playfair-display {
+    font-family: 'Playfair Display', serif;
+}
+.ql-font-oswald {
+    font-family: 'Oswald', sans-serif;
+}
+.ql-font-source-sans-pro {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.ql-font-ubuntu {
+    font-family: 'Ubuntu', sans-serif;
+}
+.ql-font-pt-sans {
+    font-family: 'PT Sans', sans-serif;
+}
+.ql-font-inter {
+    font-family: 'Inter', sans-serif;
+}
+.ql-font-quicksand {
+    font-family: 'Quicksand', sans-serif;
+}
+.ql-font-rubik {
+    font-family: 'Rubik', sans-serif;
+}
+.ql-font-work-sans {
+    font-family: 'Work Sans', sans-serif;
+}
+.ql-font-karla {
+    font-family: 'Karla', sans-serif;
+}
+.ql-font-josefin-sans {
+    font-family: 'Josefin Sans', sans-serif;
+}
+.ql-font-comfortaa {
+    font-family: 'Comfortaa', cursive;
+}
+.ql-font-bitter {
+    font-family: 'Bitter', serif;
+}
+.ql-font-crimson-text {
+    font-family: 'Crimson Text', serif;
+}
+.ql-font-libre-baskerville {
+    font-family: 'Libre Baskerville', serif;
+}
+.ql-font-source-serif-pro {
+    font-family: 'Source Serif Pro', serif;
+}
+.ql-font-inconsolata {
+    font-family: 'Inconsolata', monospace;
+}
+.ql-font-fira-code {
+    font-family: 'Fira Code', monospace;
+}
+.ql-font-space-mono {
+    font-family: 'Space Mono', monospace;
+}
+
+#article {
+    margin-top: 20px;
+}
+
+#wordCount, #charCount {
+    font-size: 1rem; 
+}
+
+/* Export Modal Icon Styles */
+.export-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.export-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #f0f4f8 0%, #e6edf3 100%);
+    box-shadow: 
+        5px 5px 10px rgba(191, 201, 212, 0.3),
+        -5px -5px 10px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+.export-option:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        7px 7px 14px rgba(191, 201, 212, 0.4),
+        -7px -7px 14px rgba(255, 255, 255, 0.9);
+    background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.export-option svg {
+    width: 4rem;  
+    height: 4rem; 
+    margin-bottom: 1rem;
+    color: #4a90e2; 
+    transition: transform 0.3s ease;
+}
+
+.export-option:hover svg {
+    transform: scale(1.1);
+}
+
+/* Dark mode adjustments for export modal */
+body.dark .export-option {
+    background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+    box-shadow: 
+        5px 5px 10px rgba(0, 0, 0, 0.5),
+        -5px -5px 10px rgba(45, 55, 72, 0.5);
+    color: #e2e8f0;
+}
+
+body.dark .export-option:hover {
+    background: linear-gradient(145deg, #374151 0%, #1f2937 100%);
+}
+
+body.dark .export-option svg {
+    color: #63b3ed; 
+}
